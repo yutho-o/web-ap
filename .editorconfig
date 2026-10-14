@@ -1,0 +1,22 @@
+# Reglages d'edition communs a tous les postes.
+# https://editorconfig.org
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{html,css,js,php}]
+indent_size = 4
+
+[*.{json,yml,yaml}]
+indent_size = 2
+
+[*.md]
+# Deux espaces en fin de ligne ont un sens en Markdown.
+trim_trailing_whitespace = false

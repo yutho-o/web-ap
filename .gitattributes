@@ -1,0 +1,19 @@
+# Normalisation des fins de ligne.
+# Le groupe travaille sur Windows et sur Linux : sans cette regle, un
+# fichier change entierement d'aspect dans git en passant d'un poste a
+# l'autre, ce qui rend les differences illisibles.
+* text=auto eol=lf
+
+# Fichiers binaires : aucune conversion.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+
+# Fichiers devant conserver des fins de ligne Windows.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf

@@ -1,0 +1,15 @@
+{
+    // Extensions proposees a l'ouverture du dossier.
+    "recommendations": [
+        "ritwickdey.liveserver",
+        "ecmel.vscode-html-css",
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-french",
+        "ms-azuretools.vscode-docker"
+    ],
+    "unwantedRecommendations": []
+}

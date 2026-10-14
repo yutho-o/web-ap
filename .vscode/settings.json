@@ -1,0 +1,41 @@
+{
+  // Reglages appliques a ce dossier uniquement.
+
+  // Affichage
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.wordWrap": "on",
+
+  // Aide a la saisie sans faire le travail a la place de l'etudiant :
+  // la completion reste disponible, mais ne s'insere pas toute seule.
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.suggestOnTriggerCharacters": true,
+
+  // Mise en forme automatique a l'enregistrement.
+  "editor.formatOnSave": true,
+  "[html]": { "editor.defaultFormatter": "vscode.html-language-features" },
+  "[css]": { "editor.defaultFormatter": "vscode.css-language-features" },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+
+  // Serveur de developpement (extension Live Server), pour les pages
+  // HTML et JavaScript uniquement. Les pages PHP passent par le serveur
+  // PHP, pas par Live Server.
+  "liveServer.settings.root": "/cours",
+  "liveServer.settings.donotShowInfoMsg": true,
+
+  // Verification orthographique en francais.
+  "cSpell.language": "fr,en",
+
+  // Dossiers masques dans l'explorateur pour ne pas encombrer la vue.
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  }
+}

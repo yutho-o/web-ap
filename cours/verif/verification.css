@@ -1,0 +1,13 @@
+/* Feuille de style de vérification. */
+
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 40rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.test {
+    color: #17692a;
+    font-weight: bold;
+}

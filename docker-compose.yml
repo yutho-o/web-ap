@@ -1,0 +1,95 @@
+# Environnement de travail PHP et MySQL.
+#
+# Demarrer :  docker compose up -d
+# Arreter  :  docker compose down
+#
+# Adresses une fois demarre :
+#   http://localhost:8080   les pages du dossier cours/php
+#   http://localhost:8081   phpMyAdmin
+#
+# Les donnees de la base sont conservees dans un volume : arreter
+# l'environnement ne les efface pas.
+
+# Mot de passe root MySQL, defini une seule fois et reutilise via *root-pwd
+x-mysql-root-password: &root-pwd root
+
+services:
+  web:
+    build: ./docker/web
+    container_name: lamp_web
+    ports:
+      - "8080:80"
+    # Le debogueur Xdebug appelle VS Code, qui tourne sur la machine hote.
+    # Cette ligne donne au conteneur un nom pour joindre cette machine.
+    # Docker Desktop le fournit deja ; ailleurs (Docker Engine sous Linux
+    # ou WSL) il faut le declarer, comme ici.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      # Chemin absolu du dossier cours sur la machine hote (celle ou
+      # tourne docker compose). Sert uniquement aux liens « ouvrir dans
+      # VS Code » proposes par Xdebug sur ses pages d'erreur, voir
+      # cours/verif/ouvrir-editeur.php. ${PWD} suppose que
+      # « docker compose » est lance depuis la racine du projet, comme
+      # indique dans docker/README.md.
+      HOST_COURS_DIR: ${PWD}/cours
+      # Sous WSL, VS Code tourne cote Windows : un lien vscode://file/
+      # pointant vers un chemin Linux (/home/...) echoue, Windows le lit
+      # comme un chemin local invalide. WSL_DISTRO_NAME (deja exportee
+      # par WSL dans le shell) permet de fabriquer un lien du bon type a
+      # la place. Vide en dehors de WSL, sans effet.
+      HOST_WSL_DISTRO: ${WSL_DISTRO_NAME:-}
+      # Pour VS Code en Remote-SSH : l'« autorite » de la connexion
+      # (ex. ssh-remote+mon-serveur) est choisie par chaque utilisateur
+      # dans VS Code et ne peut pas etre devinee automatiquement. La
+      # renseigner ici la remplace si besoin, voir cours/verif/README.md.
+      VSCODE_REMOTE_AUTHORITY: ${VSCODE_REMOTE_AUTHORITY:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      # Le dossier de travail est monte dans le serveur : une page
+      # enregistree est immediatement servie, sans redemarrage.
+      - ./cours:/var/www/html
+      - ./ressources/images:/var/www/html/ressources-images:ro
+    # Le dossier des logos vient du bind mount ci-dessus : ses permissions
+    # sont celles de la machine hote, ou l'utilisateur www-data (dans le
+    # conteneur) n'a pas le droit d'ecrire. On corrige ca a chaque demarrage
+    # avant de lancer Apache, pour que ca fonctionne quel que soit l'hote.
+    command: >
+      bash -c "mkdir -p /var/www/html/assets/images/logos &&
+      chmod -R 777 /var/www/html/assets/images/logos &&
+      apache2-foreground"
+
+  db:
+    image: mysql:8.0
+    container_name: lamp_db
+    environment:
+      MYSQL_ROOT_PASSWORD: *root-pwd
+      MYSQL_DATABASE: esport
+      MYSQL_USER: etudiant
+      MYSQL_PASSWORD: etudiant
+    volumes:
+      - donnees-mysql:/var/lib/mysql
+      # Tout fichier .sql place ici est importe au tout premier demarrage.
+      - ./ressources/base-de-donnees:/docker-entrypoint-initdb.d:ro
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: lamp_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 64M
+      MYSQL_ROOT_PASSWORD: *root-pwd
+    depends_on:
+      - db
+
+volumes:
+  donnees-mysql:

@@ -1,0 +1,24 @@
+{
+    // Raccourcis accessibles par « Terminal » puis « Executer une tache ».
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Docker : demarrer l'environnement",
+            "type": "shell",
+            "command": "docker compose up -d",
+            "problemMatcher": []
+        },
+        {
+            "label": "Docker : arreter l'environnement",
+            "type": "shell",
+            "command": "docker compose down",
+            "problemMatcher": []
+        },
+        {
+            "label": "Git : enregistrer le travail",
+            "type": "shell",
+            "command": "git add -A && git status --short",
+            "problemMatcher": []
+        }
+    ]
+}

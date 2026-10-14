@@ -1,0 +1,26 @@
+{
+    // Configuration du debogueur PHP (extension PHP Debug + Xdebug).
+    // Utile a partir des seances PHP ; sans effet avant.
+    //
+    // Marche a suivre : F5, puis poser un point d'arret et recharger la
+    // page dans le navigateur. Voir cours/verif/README.md.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Ecouter Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            // Ecoute sur toutes les interfaces : la connexion arrive du
+            // conteneur Docker, pas de la machine elle-meme.
+            "hostname": "0.0.0.0",
+            // Correspondance entre les chemins du serveur et ceux du
+            // poste. A gauche le dossier vu par PHP dans le conteneur, a
+            // droite le dossier ouvert dans VS Code. Sans cette ligne,
+            // les points d'arret restent gris et ne se declenchent jamais.
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}/cours"
+            }
+        }
+    ]
+}

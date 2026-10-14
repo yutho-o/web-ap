@@ -1,0 +1,53 @@
+# ---------------------------------------------------------------
+# Fichiers systeme
+# ---------------------------------------------------------------
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ---------------------------------------------------------------
+# Editeurs
+# ---------------------------------------------------------------
+.idea/
+*.swp
+*.swo
+*~
+.history/
+
+# La configuration VS Code du depot est volontairement versionnee :
+# elle fait partie du template. Seuls les fichiers personnels sont ignores.
+.vscode/*.log
+.vscode/settings.local.json
+
+# ---------------------------------------------------------------
+# Dependances et outils
+# ---------------------------------------------------------------
+node_modules/
+vendor/
+composer.phar
+
+# ---------------------------------------------------------------
+# Journaux et fichiers temporaires
+# ---------------------------------------------------------------
+*.log
+*.tmp
+*.bak
+*.orig
+
+# ---------------------------------------------------------------
+# Donnees locales
+# ---------------------------------------------------------------
+# Sauvegardes de base produites pendant les essais.
+*.sql.bak
+donnees-mysql/
+
+# Fichiers deposes par les formulaires de televersement.
+# Le dossier reste versionne grace a son .gitkeep, son contenu non.
+televersements/*
+!televersements/.gitkeep
+
+# Identifiants : ne jamais versionner un mot de passe.
+.env
+*.local.php
