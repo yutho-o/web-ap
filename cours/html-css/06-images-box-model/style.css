@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    color: darkslategray;
+}
+
+h1 {
+    color: steelblue;
+}
+
+h2 {
+    color: teal;
+}
+
+li {
+    margin-bottom: 4px;
+    color: black;
+}
+
+#race-vedette {
+    color: purple;
+}
+
+#maine-coon {
+    color: chocolate;
+}
+
+.recommandee {
+    font-weight: bold;
+    color: seagreen;
+}
+
+.deconseillee {
+    color: firebrick;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 16px;
+}
+
+nav a {
+    color: darkslategray;
+    text-decoration: none;
+}
+
+nav a:visited {
+    color: darkslategray;
+}
+
+nav a:hover {
+    color: seagreen;
+    text-decoration: underline;
+}
+
+figure {
+    border: 2px solid steelblue;
+    padding: 8px;
+    margin: 16px 0;
+}
+
+img {
+    width: 300px;
+}
+
+figcaption {
+    font-style: italic;
+    margin-top: 4px;
+}
