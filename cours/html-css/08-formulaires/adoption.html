@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Adopter un chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#choisir">Choisir sa race</a></li>
+        <li><a href="adoption.html">Adoption</a></li>
+        <li><a href="https://fr.wikipedia.org/wiki/Chat">En savoir plus (Wikipédia)</a></li>
+        <li><a href="https://www.la-spa.fr/">La SPA</a></li>
+    </ul>
+</nav>
+<h1>Adopter un chat</h1>
+<p>L'adoption d'un chat <strong>engage sur plusieurs années</strong> : le choix mérite réflexion avant de se décider.</p>
+<ol>
+    <li>Contacter un refuge ou une association locale.</li>
+    <li>Prévoir le matériel de base (litière, gamelles, griffoir).</li>
+    <li>Prendre rendez-vous chez un vétérinaire dans les jours suivant l'arrivée.</li>
+</ol>
+<h2>Demande d'adoption</h2>
+<form action="traitement.php" method="post">
+    <p>
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" required>
+    </p>
+    <p>
+        <label for="email">Adresse email</label>
+        <input type="email" id="email" name="email" required>
+    </p>
+    <p>
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone" name="telephone">
+    </p>
+    <p>
+        <label for="visite">Date souhaitée de visite</label>
+        <input type="date" id="visite" name="visite">
+    </p>
+    <p>
+        <label for="animaux">Nombre d'animaux déjà présents au foyer</label>
+        <input type="number" id="animaux" name="animaux" min="0">
+    </p>
+    <p>
+        <label for="race">Race souhaitée</label>
+        <select id="race" name="race">
+            <option value="indifferent">Peu importe</option>
+            <option value="europeen">Européen</option>
+            <option value="maine-coon">Maine Coon</option>
+            <option value="siamois">Siamois</option>
+            <option value="persan">Persan</option>
+        </select>
+    </p>
+    <p>
+        Avez-vous déjà eu un chat ?
+        <label for="deja-oui">Oui</label>
+        <input type="radio" id="deja-oui" name="deja_chat" value="oui">
+        <label for="deja-non">Non</label>
+        <input type="radio" id="deja-non" name="deja_chat" value="non">
+    </p>
+    <p>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+    </p>
+    <p>
+        <input type="checkbox" id="contact" name="contact">
+        <label for="contact">J'accepte d'être contacté(e) par téléphone</label>
+    </p>
+    <p>
+        <button type="submit">Envoyer la demande</button>
+    </p>
+</form>
+</body>
+</html>
